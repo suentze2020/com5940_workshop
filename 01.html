@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            margin:20px;
+            padding:20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Demonstration of Standard, Anonymous, and Arrow Functions</h3>
+        <button ID="js04">JS04</button>
+        <button ID="js14">JS14</button>
+        <button ID="js24">JS24</button>
+        <div id="result"></div>
+    </div>
+    <script>
+
+        /* Standard JS */
+        function js01() {
+            console.log("Call js01.")
+        }
+
+        function js02(x,y) {
+            console.log("Call js02 returns " + (x+y).toString() + ".");
+        }
+
+        function js03(x,y) {
+            return ("Call js03 returns " + (x+y).toString() + ".<br />");
+        }
+
+        document.querySelector('#js04').addEventListener('click', js04);
+
+        function js04() {
+            alert("JS04 clicked.")
+        }
+
+       /* Anonymous functions */
+        let js11 = function() {
+            console.log("Call js11.")
+        }
+
+        let js12 = function(x,y) {
+            console.log("Call js12 returns " + (x+y).toString() + ".");
+        }
+
+        let js13 = function(x,y) {
+            return ("Call js13 returns " + (x+y).toString() + ".<br />");
+        }
+
+        document.querySelector('#js14').addEventListener('click', function () {
+            alert("JS14 clicked.")
+        });
+
+        /* Arrow functions */
+        let js21 = () => console.log("Call js21.")
+        let js22 = (x,y) => console.log("Call js22 returns " + (x+y).toString() + ".");
+        let js23 = (x,y) => ("Call js23 returns " + (x+y).toString() + ".<br />");
+        document.querySelector('#js24').addEventListener('click', () => alert("JS24 clicked."));
+
+        /* Calling standard, anonymous, and arrow functions */
+        // js01(); // standard function
+        // js11(); // anonymous function
+        // js21(); // arrow function
+        // js02(2,3); // standard function
+        // js12(2,3); // anonymous function
+        // js22(2,3); // arrow function
+        // let result_js03 = js03(2,3); // standard function
+        // let result_js13 = js13(2,3); // anonymous function
+        // let result_js23 = js23(2,3); // arrow function
+        // document.getElementById("result").innerHTML += result_js03;
+        // document.getElementById("result").innerHTML += result_js13;
+        // document.getElementById("result").innerHTML += result_js23;
+    </script>
+</body>
+</html>

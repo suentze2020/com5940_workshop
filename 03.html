@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            margin:20px;
+            padding:20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Demonstration of Class/Object/Inheritance</h3>
+    </div>
+    <script>
+        
+        class Animal {
+            constructor(name, numofLegs, isMamal) { 
+                this.name = name;
+                this.numofLegs = numofLegs; 
+                this.isMamal = isMamal ? 'a mamal' : 'not a mamal';
+                // this.isMamal = "a mamal" if isMamal else "not a mamal";
+                // var a = 2;
+                // var b = 3;    
+                // var c = ((a < b) ? 'minor' : 'major');
+            }
+    
+            displayAnimal() {
+                return `A ${this.name} has ${this.numofLegs} legs. It is ${this.isMamal}.`;
+            }
+
+        }
+
+        class Cat extends Animal {
+            constructor(name, numofLegs, isMamal, hasTail) {
+                super(name,numofLegs,isMamal); 
+                this.hasTail = hasTail ? 'has tail' : 'does not have a tail';
+                // self.hasTail = "has tail" if hasTail else "does not have a tail";
+            }   
+            
+            displayCat(){
+                // print("Name : ", self.name,  ", Score: ", self.score)
+                // print(self.name,":", self.score)
+                // return f"A {self.name} has {self.numofLegs} legs. It is {self.isMamal}. It {self.hasTail}."
+                return `A ${this.name} has ${this.numofLegs} legs. It is ${this.isMamal}. It ${this.hasTail}.`;
+            }    
+
+        }
+
+        const animal1 = new Animal('dog',4,true);
+        const animal2 = new Animal('crocodile',4,false);
+        const animal3 = new Animal ('cat',4,true);
+        console.log(animal1);
+        console.log(animal2);
+        console.log(animal3);
+        console.log(animal1.displayAnimal());
+        const cat1 = new Cat('Persian cat',4,true,true);
+        const cat2 = new Cat('Siamese cat',4,true,true);
+        console.log(cat1);
+        console.log(cat2);
+        console.log(cat1.displayCat());
+        console.log(cat2.displayCat());
+    </script>
+</body>
+</html>

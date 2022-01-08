@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            margin:20px;
+            padding:20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Demonstration of High Order Functions</h3>
+        <div id="canvas"></div>
+    </div>
+    <script>
+
+        /* High Order Functions */
+        let seperator = "*********************";
+        let students = ['John','David','Monica','Susan','Peter','Jane'];
+        /* Standard JS for loop */    
+        let student_list = '';
+        for (i=0;i<students.length;i++) {
+            console.log(`Name:${students[i]}`);
+            student_list = student_list + 'Student:'+students[i]+"<br>";
+        }
+        student_list =  student_list + "<br />" + seperator + "<br />";
+        document.getElementById('canvas').innerHTML = student_list;
+
+        /* ES6 for loop */
+        console.log(seperator)
+        students.forEach(function(student) {
+            console.log(`Name:${student}`);
+        }); 
+        students.forEach(function(student) {
+            // student_list = student_list + 'Student:'+student+"<br>";
+            student_list = student_list + `Student: ${student} <br>`;
+        }); 
+        document.getElementById('canvas').innerHTML = student_list;
+
+
+        /* Standard JS for filter loop */ 
+        let students2 = [
+            {name: 'John', points: 50},
+            {name: 'Mary', points: 70},
+            {name: 'Mark', points: 90},
+            {name: 'Louis', points: 40},
+            {name: 'Susan', points: 30},
+            {name: 'Jennifer', points: 85},
+        ]
+
+        let passed_students = [];
+        for (i=0;i<students2.length;i++) {
+            console.log(students2[i].name,students2[i].points);
+            if (students2[i].points >=50) {
+                student = {'name':students2[i].name,'points':students2[i].points};
+                passed_students.push(student);
+            }
+        }
+        console.log("Passed students 1:", passed_students);
+
+        /* ES6 for filter loop using anonymous function format */ 
+        const passedStudents_1 = students2.filter(function(student) {
+            if (student.points >= 50) {
+                return student.points;
+            }
+        });
+        console.log('Passed students 2:',passedStudents_1);
+
+         /* ES6 for filter loop using arrow function format */ 
+        const passedStudents_2 = students2.filter(student => student.points >= 50);
+
+        console.log('Passed students 3:',passedStudents_2);
+
+         /* Use standard JS function  
+        to create new array of extracted elements */
+
+        const student_names = [];
+        for (i=0; i < students2.length; i++) {
+            student_names.push(students2[i].name);
+        }
+        console.log("Student Names:", student_names);
+
+        /* Use map function in anonymous function format 
+        to create new array of extracted elements */
+
+        const student_names_1 = students2.map(function(student) {
+            return student.name;
+        });
+        console.log("Student Names 1:", student_names_1);
+
+        /* Use map function in arrow function format 
+        to create new array of extracted elements */
+
+        const student_names_2 = students2.map(student => student.name);
+        console.log("Student Names 2:", student_names_2);
+
+
+        /* Use standard JS function  
+        to create new array of "sorted" elements */
+        
+        const sorted_student_names = [];
+        for (i=0; i < students2.length; i++) {
+            sorted_student_names.push(students2[i].name);
+        }
+        console.log("Sorted Student Names:", sorted_student_names.sort());
+        
+
+        /* Use sort function in anonymous function format 
+        to create sorted array of elements (e.g. names) */
+        
+        const sorted_student_names_1 = students2.sort(function(s1,s2) {
+            if (s1.name > s2.name) {
+                return 1;
+            } else {
+                return -1
+            }
+        });
+        console.log("Sorted student Names 1:", sorted_student_names_1);
+        
+
+         /* Use sort function in arrow function format 
+        to create a sorted array of elements (e.g. names)  */
+        let students3 = [
+            {name: 'John', points: 50},
+            {name: 'Mary', points: 70},
+            {name: 'Mark', points: 90},
+            {name: 'Louis', points: 40},
+            {name: 'Susan', points: 30},
+            {name: 'Jennifer', points: 85},
+        ]
+        const sorted_student_names_2 = students3.sort((s1,s2) => (s1.name > s2.name ? 1:-1));
+        console.log("Sorted student names 2:", sorted_student_names_2);
+
+        let students4 = [
+            {name: 'John', points: 50},
+            {name: 'Mary', points: 70},
+            {name: 'Mark', points: 90},
+            {name: 'Louis', points: 40},
+            {name: 'Susan', points: 30},
+            {name: 'Jennifer', points: 85},
+        ]
+
+        const sorted_student_scores = students4.sort((s1,s2) => (s1.points - s2.points));
+        console.log("Sorted student scores:", sorted_student_scores);
+        
+        /* Use standard JS function  
+        to perform a reduce function of aggregate */
+        let student_scores = [];
+        let total_scores = 0;
+        let student_records = [
+            {name: 'John', points: 50},
+            {name: 'Mary', points: 70},
+            {name: 'Mark', points: 90},
+            {name: 'Louis', points: 40},
+            {name: 'Susan', points: 30},
+            {name: 'Jennifer', points: 85},
+        ]
+
+        for (i=0;i<student_records.length;i++) {
+            total_scores = total_scores + student_records[i].points
+            console.log(student_records[i]);
+        }
+
+        console.log("Total students scores:", total_scores);
+
+
+         /* Use ES6 to perform a reduce function  
+         for aggregating quantities in anonymous function format */
+         const total = 0;
+         const student_aggregates_1 = student_records.reduce(function(total,student_records) {
+             return total + student_records.points;
+         },0);
+         console.log("Total students scores 1:", student_aggregates_1);
+
+        /* Use ES6 to perform a reduce function  
+         for aggregating quantities in arrow function format */
+
+        const student_aggregates_2 = student_records.reduce((total,student_records) => total + student_records.points,0);
+        console.log("Total students scores 2:", student_aggregates_2);
+
+          /* Use ES6 to combine all high order functions for a
+          a simple illustration */
+        const finals = [
+            {name: 'John', points: 50},
+            {name: 'Mary', points: 70},
+            {name: 'Mark', points: 90},
+            {name: 'Louis', points: 40},
+            {name: 'Susan', points: 30},
+            {name: 'Jennifer', points: 85},
+        ]
+
+        const map_finals = finals
+            .map(final => final.points)
+            .filter(final => final >= 50)
+            .sort((f1,f2) => (f1 - f2))
+            .reduce((f1,f2) => f1 + f2,0)
+
+        console.log("Finals:",map_finals);
+
+    </script> 
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            margin:20px;
+            padding:20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Demonstration of Callback Functions</h3>
+    </div>
+</body>
+<script>
+    let function_two = function () {
+        console.log("Function two is a function being called by function one.");
+    }
+
+    let function_three = function () {
+        console.log("Function three is a function being called by function one.");
+    }
+
+    let function_one = function (next_function) {
+        console.log("I am about to call another function.");
+        next_function();
+    }
+
+    let add = function (a,b) {
+        return a + b;
+    }
+
+
+    let multiply = function (a,b) {
+        return a * b;
+    }
+
+    let calc = function(a,b,callback) {
+        return callback(a,b);        
+    }
+
+    function_one(function_three); // requesting the execution of another function
+    console.log("Answer 2+3:",calc(2,3,add));
+    console.log("Answer 2x3:",calc(2,3,multiply));
+    
+
+</script>
+</html>
